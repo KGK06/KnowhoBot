@@ -18,26 +18,26 @@ app = Client(
 def start(client, message):
     client.send_message(chat_id=message.chat.id,
                         text=f"`Hi` **{message.from_user.first_name}**\n `Enter the number to search...`",reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("About", callback_data="about"),
-             InlineKeyboardButton("Source", callback_data="src")]]))
+            [[InlineKeyboardButton("🤓 About", callback_data="about"),
+             InlineKeyboardButton("🤓 Help ", callback_data="src")]]))
     check_status = check(message.chat.id)
 
 @app.on_callback_query()
 def newbt(client,callback_query):
     txt=callback_query.data
     if txt=="about":
-        callback_query.message.edit(text=f"`Bot`            : [knowhobot](t.me/knowhobot)\n`Creator :` [agentnova](t.me/agentnova)\n`Language:` [Python3](https://python.org)\n`Library :` [Pyrogram](https://docs.pyrogram.org/) \n`Server  :` [Heroku](https://herokuapp.com/)",
+        callback_query.message.edit(text=f"𝗠𝘆 𝗡𝗮𝗺𝗲 : [MeG Know Who Bot](t.me/MeGKnowWhoBot)\n\n 𝗖𝗿𝗲𝗮𝘁𝗼𝗿 : [StarKXT8](t.me/MeGBots)\n\n𝗟𝗮𝗻𝗴𝘂𝗮𝗴𝗲 : [Python3](https://python.org)\n\n𝗟𝗶𝗯𝗿𝗮𝗿𝘆 : [Pyrogram](https://docs.pyrogram.org/) \n\n𝗦𝗲𝗿𝘃𝗲𝗿 : [Click Here](https://www.google.com/)",
                         disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("Give Feedback", url="t.me/agentnova")]]))
     elif txt=="src":
-        callback_query.message.edit(text="Enjoy...:-D\nhttps://github.com/agentnova/KnowhoBot", disable_web_page_preview=True)
+        callback_query.message.edit(text="🤓 𝗛𝗲𝘆 !! 𝗬𝗼𝘂 𝗡𝗲𝗲𝗱 𝗛𝗲𝗹𝗽 ?\n**Its Bit Easy To Use Me 😎**\n\n➢ __Send me a 10-Digit Mobile Number(+91 not Needed).__\n➢ __I Will Fetch the Details of Provided Number from TrueCaller and Eyecon.__", disable_web_page_preview=True)
 
 
 
 @app.on_message(filters.command(["about"]))
 def about(client, message):
     client.send_message(chat_id=message.chat.id, reply_to_message_id=message.message_id,
-                        text=f"`Bot`            : [knowhobot](t.me/knowhobot)\n`Creator :` [agentnova](t.me/agentnova)\n`Language:` [Python3](https://python.org)\n`Library :` [Pyrogram](https://docs.pyrogram.org/) \n`Server  :` [Heroku](https://herokuapp.com/)",
+                        text=f"𝗠 𝗡𝗮𝗺𝗲 s: [MeG Know Who Bot](t.me/MeGKnowWhoBot)\n\n𝗖𝗿𝗲𝗮𝘁𝗼𝗿 : [StarkXT8](t.me/MrGBots)\n\n𝗟𝗮𝗻𝗴𝘂𝗮𝗴𝗲 : [Python3](https://python.org)\n\n𝗟𝗶𝗯𝗿𝗮𝗿𝘆 : [Pyrogram](https://docs.pyrogram.org/) \n\n𝗦𝗲𝗿𝘃𝗲𝗿  : [Click Here](https://www.google.com/)",
                         disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("Feedback", url="t.me/agentnova")]]))
 
@@ -45,7 +45,7 @@ def about(client, message):
 @app.on_message(filters.command(["log"]))
 def stats(client, message):
     stat = client.send_message(chat_id=message.chat.id, reply_to_message_id=message.message_id,
-                               text="`Fetching details`")
+                               text="**Fetching details🗜**")
     txt = logreturn()
     stat.edit(txt)
 
@@ -67,7 +67,7 @@ def echo(client, message):
     frbsetrname = ""
     frbsetrmail = ""
     if num.isnumeric and len(num) == 10:
-        pq = "\n\n**----••Truecaller says----**\n\nLimit exceeded ,try again tomorrow 🤦🏻‍♂️"
+        pq = "\n\n**===••Truecaller says••===**\n\nLimit exceeded ,try again tomorrow 🤦🏻‍♂️"
         tresponse = ""
         try:
             tresponse = truecaller_search(cred.T_AUTH, num)
@@ -77,7 +77,7 @@ def echo(client, message):
                 tjsonload = json.loads(trslt)
                 if "name" in tjsonload['data'][0]:
                     if tjsonload['data'][0]['internetAddresses']:
-                        pq = f"\n\n**----••Truecaller says----**\n\nName : `{tjsonload['data'][0]['name']}`\nCarrier : `{tjsonload['data'][0]['phones'][0]['carrier']}` \nE-mail : {tjsonload['data'][0]['internetAddresses'][0]['id']}"
+                        pq = f"\n\n**===••Truecaller says••===**\n\nName : `{tjsonload['data'][0]['name']}`\nCarrier : `{tjsonload['data'][0]['phones'][0]['carrier']}` \nE-mail : {tjsonload['data'][0]['internetAddresses'][0]['id']}"
                         frbsetrname = tjsonload['data'][0]['name']
                         frbsetrmail = tjsonload['data'][0]['internetAddresses'][0]['id']
                     elif not tjsonload['data'][0]['internetAddresses']:
